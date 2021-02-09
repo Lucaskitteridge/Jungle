@@ -17,15 +17,16 @@ RSpec.feature "Visitor navigates from home page to product detail page", type: :
     end
   end
 
-  scenario "They see all products" do
+  scenario "The cart has 1 item in it" do
     # ACT
     visit root_path
-
-    # DEBUG
-    save_screenshot "homepage.png"
+    first('.product').click_on('Add')
 
     # VERIFY
-    expect(page).to have_css 'article.product', count: 10
+    save_screenshot "saved_to_cart.png"
+
+    # DEBUG
+    expect(page).to have_text 'My Cart (1)'
   end
 
 end 
